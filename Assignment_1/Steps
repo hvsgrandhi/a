@@ -1,0 +1,18 @@
+create 2 folders named server and client
+
+add server files in server folder and same for client
+
+stay in parent folder of client and server folder
+
+in 1st terminal
+javac Client/*.java
+javac Server/*.java
+rmiregistry 5000
+
+in 2nd terminal
+java Server.ServerMain
+
+in 3rd terminal
+java Client.ClientMain
+
+

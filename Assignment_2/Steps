@@ -1,0 +1,32 @@
+sudo apt update
+sudo apt install openjdk-8-jdk -y
+java -version
+
+sudo update-alternatives --config java
+
+Folder Structure:
+corba-calculator/
+│
+├── Calculator.idl
+├── CalculatorImpl.java
+├── CalculatorServer.java
+├── CalculatorClient.java
+
+
+module CalculatorApp {
+  interface Calculator {
+    float add(in float a, in float b);
+    float subtract(in float a, in float b);
+    float multiply(in float a, in float b);
+    float divide(in float a, in float b);
+  };
+};
+
+idlj -fall Calculator.idl
+
+
+
+javac *.java CalculatorApp/*.java
+orbd -ORBInitialPort 1050
+java CalculatorServer -ORBInitialPort 1050 -ORBInitialHost localhost
+java CalculatorClient -ORBInitialPort 1050 -ORBInitialHost localhost
