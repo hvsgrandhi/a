@@ -49,26 +49,30 @@
         async function fetchData() {
             const res = await fetch('/status');
             const data = await res.json();
-
+    
+            // Update total count and tasks left
+            document.getElementById('total-count').textContent = data.total;
+            document.getElementById('tasks-left').textContent = data.tasks_left;
+    
             const container = document.getElementById('workers-container');
             container.innerHTML = ''; // Clear previous content
-
+    
             const workerMap = {};
-
+    
             data.results.forEach(item => {
                 const id = item.worker_id;
                 if (!workerMap[id]) workerMap[id] = [];
                 workerMap[id].push(item);
             });
-
+    
             Object.keys(workerMap).forEach(worker => {
                 const col = document.createElement('div');
                 col.className = 'worker-column';
-
+    
                 const title = document.createElement('h2');
                 title.textContent = worker;
                 col.appendChild(title);
-
+    
                 workerMap[worker].forEach(entry => {
                     const div = document.createElement('div');
                     div.className = 'task-entry';
@@ -78,17 +82,27 @@
                     `;
                     col.appendChild(div);
                 });
-
+    
                 container.appendChild(col);
             });
         }
-
+    
         setInterval(fetchData, 1000);
         window.onload = fetchData;
     </script>
+    
 </head>
 <body>
     <h1>🧠 Distributed Word Count Dashboard</h1>
+    
+    <div style="text-align:center; margin-bottom: 20px;">
+        <div style="font-size: 18px;">
+            <strong>Total Word Count:</strong> <span id="total-count">0</span><br>
+            <strong>Tasks Left:</strong> <span id="tasks-left">0</span>
+        </div>
+    </div>
+
     <div id="workers-container"></div>
 </body>
+
 </html>
