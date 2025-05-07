@@ -22,47 +22,6 @@ pip install flask requests
 
 ---
 
-### 🔹 4. Create files and folders
-
-Create the following structure manually or with commands:
-
-```bash
-mkdir templates
-touch master.py worker.py templates/dashboard.html
-```
-
-Or using code editor (e.g., VS Code), just create:
-
-* `master.py`
-* `worker.py`
-* `templates/dashboard.html`
-
----
-
-### 🔹 5. Paste code
-
-#### 🔸 `master.py` (Flask Server)
-
-Paste the full Flask server code with `/get_task`, `/submit_result`, `/status`, and `/` routes, and task list in memory.
-
-#### 🔸 `worker.py` (Worker Threads)
-
-Paste the Python code with multiple `threading.Thread` workers that:
-
-* Fetch from `/get_task`
-* Process text
-* Submit to `/submit_result`
-
-#### 🔸 `templates/dashboard.html` (Dashboard)
-
-Paste HTML with live updates using:
-
-```js
-setInterval(() => fetch('/status')...)
-```
-
----
-
 ### 🔹 6. Run the Flask server
 
 ```bash
@@ -76,7 +35,7 @@ Then open your browser to:
 
 ### 🔹 7. Run the workers in another terminal
 
-Keep the virtual environment active and run:
+Start the virtual environment active and run:
 
 ```bash
 python worker.py
