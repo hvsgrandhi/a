@@ -17,6 +17,8 @@ public class ClientMain {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter space-separated numbers to broadcast: ");
             String input = scanner.nextLine();
+            System.out.println("Sending unsorted list to server for broadcasting...");
+
 
             String[] tokens = input.trim().split("\\s+");
             List<Integer> numbers = new ArrayList<>();

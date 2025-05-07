@@ -13,7 +13,9 @@ public class ClientImplementation extends UnicastRemoteObject implements ClientI
 
     @Override
     public void sortAndDisplay(List<Integer> numbers) throws RemoteException {
+        System.out.println("Received list from server: " + numbers);
         Collections.sort(numbers);
-        System.out.println("Sorted numbers received from server: " + numbers);
+        System.out.println("Client sorted and displaying: " + numbers);
     }
+    
 }

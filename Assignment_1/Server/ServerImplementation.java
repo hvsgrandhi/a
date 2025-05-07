@@ -24,9 +24,13 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
 
     @Override
     public void broadcastNumbers(List<Integer> numbers) throws RemoteException {
-        System.out.println("Broadcasting numbers: " + numbers);
+        System.out.println("Server received list to broadcast: " + numbers);
+        System.out.println("Broadcasting to " + clients.size() + " clients...");
         for (ClientInterface client : clients) {
-            client.sortAndDisplay(new ArrayList<>(numbers)); // Send a copy
+            System.out.println("Sending to client: " + client);
+            client.sortAndDisplay(new ArrayList<>(numbers));
         }
+        System.out.println("Broadcast complete.");
     }
+
 }
