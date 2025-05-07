@@ -32,6 +32,7 @@ int main(int argc, char* argv[]) {
 
     // Broadcast N to all processes
     MPI_Bcast(&N, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    // MPI_Bcast(void *data, int count, MPI_Datatype datatype, int root, MPI_Comm comm)
 
     int elements_per_process = N / size;
     sub_arr = (int*) malloc(elements_per_process * sizeof(int));
