@@ -1,6 +1,8 @@
 import CalculatorApp.*;
 import org.omg.CORBA.*;
 import org.omg.CosNaming.*;
+import java.util.Scanner;
+
 
 public class CalculatorClient {
     public static void main(String[] args) {
@@ -15,11 +17,17 @@ public class CalculatorClient {
             // Resolve the Calculator object reference
             Calculator calcRef = CalculatorHelper.narrow(ncRef.resolve_str("Calculator"));
 
-            // Call remote methods
-            System.out.println("Addition: " + calcRef.add(10, 5));
-            System.out.println("Subtraction: " + calcRef.subtract(10, 5));
-            System.out.println("Multiplication: " + calcRef.multiply(10, 5));
-            System.out.println("Division: " + calcRef.divide(10, 5));
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter first number: ");
+            float a = sc.nextFloat();
+            System.out.print("Enter second number: ");
+            float b = sc.nextFloat();
+
+            System.out.println("Addition: " + calcRef.add(a, b));
+            System.out.println("Subtraction: " + calcRef.subtract(a, b));
+            System.out.println("Multiplication: " + calcRef.multiply(a, b));
+            System.out.println("Division: " + calcRef.divide(a, b));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
