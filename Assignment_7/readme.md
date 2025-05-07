@@ -31,11 +31,14 @@ python master.py
 Then open your browser to:
 📍 `http://localhost:5000`
 
+And Watch The dashboard while running worker.py
+
 ---
+
 
 ### 🔹 7. Run the workers in another terminal
 
-Start the virtual environment active and run:
+Start the virtual environment and run:
 
 ```bash
 python worker.py
