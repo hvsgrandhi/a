@@ -28,8 +28,8 @@ public class CalculatorServer {
             NameComponent path[] = ncRef.to_name("Calculator");
             ncRef.rebind(path, href);
 
-            System.out.println("Calculator Server ready and waiting...");
-
+            System.out.println("[Server] Calculator Server is ready and waiting for client requests...");
+            
             // Wait for invocations from clients
             orb.run();
 
