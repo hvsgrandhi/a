@@ -63,18 +63,14 @@ You're working from the **parent folder** of `Client` and `Server`.
 ```bash
 javac Client/*.java
 javac Server/*.java
-rmiregistry 5000
 ```
 
 🔍 **Explanation**:
 
 * `javac Client/*.java`: Compiles all client files.
 * `javac Server/*.java`: Compiles all server files.
-* `rmiregistry 5000`: Starts RMI registry on port `5000`.
 
   * This registry holds the **bound server object** so clients can discover it.
-
-> Keep this terminal running. Don’t close it.
 
 ---
 
@@ -87,14 +83,7 @@ java Server.ServerMain
 🔍 **Explanation**:
 
 * Runs `ServerMain.java`.
-* Starts server instance and **registers/binds** it in the RMI registry:
-
-  ```java
-  LocateRegistry.createRegistry(5000);
-  Naming.rebind("rmi://localhost:5000/Server", server);
-  ```
-
-> Now the server is **discoverable** by name `"Server"` on port 5000.
+* Starts server instance and **registers/binds** it in the RMI registry at 1099:
 
 ---
 
@@ -111,7 +100,7 @@ java Client.ClientMain
   1. **Looks up** the server:
 
      ```java
-     ServerInterface server = (ServerInterface) Naming.lookup("rmi://localhost:5000/Server");
+     ServerInterface server = (ServerInterface) Naming.lookup("rmi://localhost:1099/Server");
      ```
   2. **Creates its stub** and sends it to the server:
 
