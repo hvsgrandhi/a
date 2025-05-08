@@ -339,3 +339,39 @@ Each process stores the address or reference to its next neighbor in the ring.
 ---
 
 Would you like a printable PDF or flashcard format for these viva Q\&As?
+
+
+### ✅ **What is Election in Distributed Systems?**
+
+**Election** refers to the **process of selecting a coordinator (leader)** among multiple processes in a distributed system.
+A coordinator is responsible for **managing tasks like resource allocation, decision-making, or communication control**.
+
+An election is typically triggered when:
+
+* The current coordinator **fails** or becomes **unresponsive**.
+* A new process joins and has a higher ID (in Bully).
+* A process detects inconsistency or mismanagement.
+
+---
+
+### ⚖️ **Difference Between Bully Algorithm and Ring Algorithm**
+
+| Feature                     | **Bully Algorithm**                                                 | **Ring Algorithm**                                                |
+| --------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **Structure**               | No fixed structure; all processes can directly talk to others       | Processes are arranged in a logical ring                          |
+| **Election Initiation**     | Any process can start; sends messages to higher-ID processes        | Election message is passed sequentially around the ring           |
+| **Selection Criteria**      | Highest-ID alive process becomes coordinator                        | Highest-ID in the ring becomes coordinator                        |
+| **Message Complexity**      | O(n²) in worst case                                                 | O(n), as the message passes once through each active process      |
+| **Fault Tolerance**         | Fails if messages aren’t delivered or higher processes crash midway | Can handle failed processes by skipping them during the ring pass |
+| **Speed**                   | Faster if few higher processes exist                                | Slower due to round-robin style message passing                   |
+| **Coordinator Declaration** | Initiator declares itself if no higher process responds             | New coordinator declared after full ring traversal                |
+| **Redundancy**              | Can lead to duplicate elections if not synchronized                 | Naturally synchronized due to ring traversal                      |
+
+---
+
+### 💡 Summary
+
+* Use **Bully Algorithm** when direct communication is allowed and quick decisions are needed.
+* Use **Ring Algorithm** in structured networks with predefined neighbor connections and better fault tolerance.
+
+Would you like a diagram to visually explain the difference?
